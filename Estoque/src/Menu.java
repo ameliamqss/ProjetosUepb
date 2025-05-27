@@ -5,10 +5,8 @@ public class Menu {
     Usuario usuario = null;
 
     int opcaoUsuario;
-
-    public Menu() {
-        menuPrincipal();
-    }
+    public Menu() {} 
+    
     public void menuPrincipal() {
         do {
             System.out.println("Menu Usuário:");
