@@ -50,7 +50,6 @@ public class Estoque implements AcoesEstoque {
             listarProdutos();
             System.out.print("Digite o número do produto a ser removido: ");
             int escolha = sc.nextInt();
-            sc.nextLine();
 
             if (escolha < 1 || escolha > produtos.size()) {
                 System.out.println("Escolha inválida.");
