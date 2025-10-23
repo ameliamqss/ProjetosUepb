@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -32,14 +33,21 @@ public class LogicaJogo {
         System.out.println("Vamos começar a preenchela");
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
-                System.out.println("Digite um número para a posição ["+ (i+1)+"]["+(j+1)+"]:");
-                matriz[i][j]= sc.nextInt();
-                mostrarMatriz(matriz);
-            }
-        }
+                boolean valido=false;
+                 while(!valido){
+                    try{
+                    System.out.println("Digite um número para a posição ["+ (i+1)+"]["+(j+1)+"]:");
+                    matriz[i][j]= sc.nextInt();
+                    valido=true;
+                    mostrarMatriz(matriz);
+            }catch(InputMismatchException e){
+                System.out.println("Erro: O valor digitado não é um número, tente novamente.");
+                sc.nextLine();
+            }}}}
+        
         System.err.println("Matriz digitada:");
         mostrarMatriz(matriz);
-    }
+            }
 
     public void colherNovoDigito(){
         System.out.println("Vamos corrigir algum número, você precisará digitar a linha e depois a coluna, posteriormente o valor a ser alterado.");
