@@ -77,14 +77,24 @@ public class LogicaJogo {
     }
 
     public void corrigirDigito(){
+        //corrigir para validar respostas
         String resposta;
+        boolean entradaValida=true;
        do{
         System.out.println("Deseja corrigir algum número da Matriz?->Sim(S), Não(N)");
-        resposta=sc.next();
+        resposta=sc.next().trim();
+
+        if (!(resposta.equalsIgnoreCase("S")) || !(resposta.equalsIgnoreCase("N"))) {
+            System.out.println("Entrada inválida. Digite apenas 'S' ou 'N'.");
+            entradaValida=false; 
+            return;
+        }
         if(resposta.equalsIgnoreCase("s")){
             colherNovoDigito();
+            }else{
+                System.out.println("Indo para o próximo passo.");
         }
-       }while(resposta.equalsIgnoreCase("S"));
+       }while(resposta.equalsIgnoreCase("S")&& entradaValida);
     }
 
     public void conferirSomaLinha(){
