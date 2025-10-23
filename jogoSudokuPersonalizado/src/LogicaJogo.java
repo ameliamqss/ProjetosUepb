@@ -33,17 +33,19 @@ public class LogicaJogo {
         System.out.println("Vamos começar a preenchela");
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
+                if(matriz[i][j]==0){
                 boolean valido=false;
                  while(!valido){
                     try{
                     System.out.println("Digite um número para a posição ["+ (i+1)+"]["+(j+1)+"]:");
                     matriz[i][j]= sc.nextInt();
+                    sc.nextLine();
                     valido=true;
                     mostrarMatriz(matriz);
             }catch(InputMismatchException e){
                 System.out.println("Erro: O valor digitado não é um número, tente novamente.");
                 sc.nextLine();
-            }}}}
+            }}}}}
         
         System.err.println("Matriz digitada:");
         mostrarMatriz(matriz);
@@ -61,9 +63,17 @@ public class LogicaJogo {
             System.out.println("Não foi possivel realizar a correção, pois os valores não correspondem às linhas e colunas disponiveis!");
             return;
         }
-        System.out.println("Digite o novo valor: ");
-        matriz[linha][coluna]= sc.nextInt();
-        mostrarMatriz(matriz);
+        boolean valido= false;
+        while(!false){
+            try{
+                System.out.println("Digite o novo valor: ");
+                matriz[linha][coluna]= sc.nextInt();
+                valido=true;
+                mostrarMatriz(matriz);
+            } catch(InputMismatchException e ){
+                System.out.println("Erro: o valor digitado não é um número, tente novamente.");
+            }}
+    
     }
 
     public void corrigirDigito(){
