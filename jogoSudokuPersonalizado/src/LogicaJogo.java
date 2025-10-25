@@ -2,6 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 public class LogicaJogo {
     
     private int[][]matriz= new int[3][3];
@@ -13,6 +14,8 @@ public class LogicaJogo {
         int somaLinha1;
         int somaLinha2;
         int somaLinha3;
+        String resposta;
+        boolean SeEhvalido;
     Scanner sc= new Scanner (System.in);
 
     public LogicaJogo(){}
@@ -59,43 +62,52 @@ public class LogicaJogo {
         int linha= sc.nextInt()-1;
         System.out.println("Digite a coluna: ");
         int coluna= sc.nextInt()-1;
-        if(linha>2 && coluna>2){
+        //corrigir bug, nao verifica quando somente a coluna ta errado
+        if(linha>2 || coluna>2){
             System.out.println("Não foi possivel realizar a correção, pois os valores não correspondem às linhas e colunas disponiveis!");
             return;
-        }
+            }
         boolean valido= false;
-        while(!false){
+        while(valido==false){
             try{
                 System.out.println("Digite o novo valor: ");
                 matriz[linha][coluna]= sc.nextInt();
                 valido=true;
+                sc.nextLine();
                 mostrarMatriz(matriz);
             } catch(InputMismatchException e ){
+                //verificar, fica infinito
                 System.out.println("Erro: o valor digitado não é um número, tente novamente.");
+                sc.nextLine();
             }}
     
     }
 
-    public void corrigirDigito(){
-        //corrigir para validar respostas
-        String resposta;
-        boolean entradaValida=true;
-       do{
-        System.out.println("Deseja corrigir algum número da Matriz?->Sim(S), Não(N)");
-        resposta=sc.next().trim();
+   public void corrigirDigito() {
+   do {
+    System.out.println("Deseja corrigir algum numero da Matriz? -> Sim(S), Nao(N)");
+    resposta = sc.nextLine().trim();
 
-        if (!(resposta.equalsIgnoreCase("S")) || !(resposta.equalsIgnoreCase("N"))) {
-            System.out.println("Entrada inválida. Digite apenas 'S' ou 'N'.");
-            entradaValida=false; 
-            return;
-        }
-        if(resposta.equalsIgnoreCase("s")){
+    try {
+        validarResposta(resposta);
+
+        if (resposta.equalsIgnoreCase("S")) {
             colherNovoDigito();
-            }else{
-                System.out.println("Indo para o próximo passo.");
+        } else {
+            System.out.println("Indo para o próximo passo");
         }
-       }while(resposta.equalsIgnoreCase("S")&& entradaValida);
+
+    } catch(EntradaInvalidaException e) {
+        System.out.println(e.getMessage());
+        sc.nextLine();
+        SeEhvalido=false;
     }
+
+} while(resposta.equalsIgnoreCase("S") || SeEhvalido==false);
+
+
+}
+
 
     public void conferirSomaLinha(){
 
@@ -147,4 +159,12 @@ public class LogicaJogo {
             System.out.println("Errou.");
         }
     }
+
+    private void validarResposta(String resposta) throws EntradaInvalidaException {
+    if (resposta.length() != 1 ||
+       (!resposta.equalsIgnoreCase("S") && !resposta.equalsIgnoreCase("N"))) {
+        throw new EntradaInvalidaException("Entrada invalida. Digite apenas 'S' ou 'N'.");
+    }
+}
+
 }

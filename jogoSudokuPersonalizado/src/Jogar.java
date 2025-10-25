@@ -11,6 +11,7 @@ public class Jogar {
         LogicaJogo j= new LogicaJogo();
         j.colherDados();
         j.corrigirDigito();
+        System.out.println("Resultado: ");
         j.conferirResultadoMatriz();
     }
 
