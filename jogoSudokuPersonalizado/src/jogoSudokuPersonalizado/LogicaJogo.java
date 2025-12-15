@@ -1,3 +1,4 @@
+package jogoSudokuPersonalizado;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -63,7 +64,7 @@ public class LogicaJogo {
         System.out.println("Digite a coluna: ");
         int coluna= sc.nextInt()-1;
         //corrigir bug, nao verifica quando somente a coluna ta errado
-        if(linha>2 || coluna>2){
+        if(linha>2 && coluna>2){
             System.out.println("Não foi possivel realizar a correção, pois os valores não correspondem às linhas e colunas disponiveis!");
             return;
             }
