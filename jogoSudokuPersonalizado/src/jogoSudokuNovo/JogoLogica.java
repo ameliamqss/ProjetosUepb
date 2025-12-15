@@ -51,6 +51,8 @@ public class JogoLogica {
         int linha= sc.nextInt()-1;
         System.out.println("Digite a coluna: ");
         int coluna= sc.nextInt()-1;
+        System.out.println("Digite o novo valor: ");
+        matriz[linha][coluna]= sc.nextInt();
     }
     
     public void corrigirDigito() {
