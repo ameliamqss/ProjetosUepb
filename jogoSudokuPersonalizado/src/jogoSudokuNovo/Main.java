@@ -6,7 +6,8 @@ public class Main {
 		
 		JogoLogica jogar= new JogoLogica();
 		jogar.colherDados();
-		jogar.colherNovoDigito();
+		jogar.corrigirDigito();
+		jogar.conferirResultadoMatriz();
 		
 	}
 

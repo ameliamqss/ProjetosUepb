@@ -9,6 +9,7 @@ public class JogoLogica {
 	String resposta;
     protected int numeroSorteado= ThreadLocalRandom.current().nextInt(0, 101);
     Scanner sc= new Scanner (System.in);
+    Scanner ss= new Scanner (System.in);
     
     int somaColuna1;
     int somaColuna2;
@@ -53,12 +54,14 @@ public class JogoLogica {
         int coluna= sc.nextInt()-1;
         System.out.println("Digite o novo valor: ");
         matriz[linha][coluna]= sc.nextInt();
+        System.out.println("Matriz atual");
+        mostrarMatriz(matriz);
     }
     
     public void corrigirDigito() {
     	   do {
     	    System.out.println("Deseja corrigir algum numero da Matriz? -> Sim(S), Nao(N)");
-    	    resposta = sc.nextLine().trim();
+    	    resposta = ss.nextLine().trim();
     	    if (resposta.equalsIgnoreCase("S")) {
                 colherNovoDigito();
             } else {
